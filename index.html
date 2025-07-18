@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Somos el Hueco - En Mantenimiento</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -10,6 +10,9 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* Mejoras para móviles */
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
         body {
@@ -21,6 +24,10 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            /* Mejoras para móviles */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         /* Elementos decorativos de fondo */
@@ -78,6 +85,23 @@
             50% { transform: translateY(-30px) rotate(180deg); }
         }
 
+        /* Reducir animaciones en dispositivos con preferencia de movimiento reducido */
+        @media (prefers-reduced-motion: reduce) {
+            .bg-shape,
+            .progress-fill,
+            .building-structure,
+            .worker-3 .arms,
+            .crane-arm,
+            .background-image,
+            .content-texture {
+                animation: none !important;
+            }
+            
+            .main-container {
+                animation: none !important;
+            }
+        }
+
         /* Contenedor principal asimétrico */
         .main-container {
             position: relative;
@@ -91,6 +115,9 @@
             overflow: hidden;
             min-height: 600px;
             animation: fadeInUp 1s ease-out;
+            /* Optimización para móviles */
+            -webkit-backdrop-filter: blur(20px);
+            will-change: transform;
         }
 
         @keyframes fadeInUp {
@@ -651,32 +678,292 @@
             }
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
+        /* Responsive Design Ultra Mejorado */
+        
+        /* Tablets Landscape (1024px - 1200px) */
+        @media (max-width: 1200px) and (min-width: 1025px) {
+            .main-container {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            
+            .maintenance-title {
+                font-size: 2.9rem;
+            }
+            
+            .team-scene {
+                width: 380px;
+                height: 380px;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Tablets Portrait y Landscape (768px - 1024px) */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            body {
+                padding: 15px;
+            }
+            
+            .main-container {
+                max-width: 95vw;
+                margin: 0 auto;
+                border-radius: 20px;
+                min-height: auto;
+            }
+            
             .content-wrapper {
                 grid-template-columns: 1fr;
                 grid-template-rows: auto auto auto;
+                min-height: auto;
             }
 
             .header-section {
                 grid-column: 1 / -1;
                 border-right: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                padding: 35px 45px 25px;
+                text-align: center;
+                justify-content: center;
             }
 
-            .illustration-container {
-                border-radius: 0 0 25px 25px;
-                min-height: 400px;
-                grid-column: 1 / -1;
-                grid-row: auto;
-                padding: 50px 30px;
+            .brand-logo {
+                width: 60px;
+                height: 60px;
+                font-size: 22px;
+            }
+
+            .brand-text {
+                font-size: 1.6rem;
             }
 
             .main-content {
-                padding: 30px 40px 40px;
+                grid-column: 1 / -1;
+                grid-row: 2 / 3;
+                padding: 40px 45px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
 
             .maintenance-title {
-                font-size: 2.8rem;
+                font-size: 3rem;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+
+            .maintenance-subtitle {
+                font-size: 1.6rem;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .description {
+                font-size: 1.2rem;
+                text-align: center;
+                max-width: 100%;
+                margin: 0 auto 40px;
+            }
+
+            .progress-section {
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto 40px;
+            }
+
+            .illustration-container {
+                grid-column: 1 / -1;
+                grid-row: 3 / 4;
+                border-radius: 0 0 20px 20px;
+                min-height: 500px;
+                padding: 50px 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .team-scene {
+                width: 450px;
+                height: 450px;
+                transform: scale(1);
+            }
+
+            .background-image {
+                opacity: 0.6;
+                top: 20px;
+                left: 15px;
+                width: calc(100% - 30px);
+                height: calc(100% - 40px);
+            }
+
+            .content-texture {
+                display: none;
+            }
+        }
+
+        /* Tablets Portrait (768px) */
+        @media (max-width: 768px) and (min-width: 601px) {
+            body {
+                padding: 15px;
+            }
+            
+            .main-container {
+                max-width: 100%;
+                margin: 0;
+                border-radius: 18px;
+                min-height: auto;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                min-height: auto;
+            }
+
+            .header-section {
+                grid-column: 1 / -1;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                padding: 30px 35px 20px;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .brand-logo {
+                width: 55px;
+                height: 55px;
+                font-size: 20px;
+            }
+
+            .brand-text {
+                font-size: 1.5rem;
+            }
+
+            .main-content {
+                grid-column: 1 / -1;
+                grid-row: 2 / 3;
+                padding: 35px 35px 40px;
+                text-align: center;
+            }
+
+            .maintenance-title {
+                font-size: 2.5rem;
+                line-height: 1.2;
+                margin-bottom: 25px;
+            }
+
+            .maintenance-subtitle {
+                font-size: 1.4rem;
+                margin-bottom: 35px;
+            }
+
+            .description {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                margin-bottom: 35px;
+            }
+
+            .illustration-container {
+                grid-column: 1 / -1;
+                grid-row: 3 / 4;
+                border-radius: 0 0 18px 18px;
+                min-height: 420px;
+                padding: 40px 30px;
+            }
+
+            .team-scene {
+                width: 400px;
+                height: 400px;
+                transform: scale(1);
+            }
+
+            .building-structure {
+                width: 200px;
+                height: 160px;
+            }
+
+            .worker {
+                bottom: 85px;
+            }
+
+            .worker-1, .worker-2, .worker-3 {
+                width: 45px;
+                height: 80px;
+            }
+
+            .bg-shape:nth-child(1) { width: 250px; height: 250px; }
+            .bg-shape:nth-child(2) { width: 180px; height: 180px; }
+            .bg-shape:nth-child(3) { width: 130px; height: 130px; }
+            .bg-shape:nth-child(4) { width: 90px; height: 90px; }
+        }
+
+        /* Móviles Landscape (481px - 600px) */
+        @media (max-width: 600px) and (min-width: 481px) {
+            body {
+                padding: 12px;
+            }
+
+            .main-container {
+                border-radius: 15px;
+                min-height: auto;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                min-height: auto;
+            }
+
+            .header-section {
+                grid-column: 1 / -1;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                padding: 25px 30px 18px;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .brand-logo {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+
+            .brand-text {
+                font-size: 1.3rem;
+            }
+
+            .main-content {
+                grid-column: 1 / -1;
+                grid-row: 2 / 3;
+                padding: 30px 30px 35px;
+                text-align: center;
+            }
+
+            .maintenance-title {
+                font-size: 2.2rem;
+                line-height: 1.1;
+                margin-bottom: 20px;
+            }
+
+            .maintenance-subtitle {
+                font-size: 1.25rem;
+                margin-bottom: 30px;
+            }
+
+            .description {
+                font-size: 1rem;
+                line-height: 1.5;
+                margin-bottom: 30px;
+            }
+
+            .illustration-container {
+                grid-column: 1 / -1;
+                grid-row: 3 / 4;
+                border-radius: 0 0 15px 15px;
+                min-height: 380px;
+                padding: 35px 25px;
             }
 
             .team-scene {
@@ -685,149 +972,376 @@
                 transform: scale(1);
             }
 
-            .floating-decoration {
-                width: 90px;
-                height: 65px;
-                top: 20px;
-                right: 25px;
-                opacity: 0.65;
-                transform: rotate(-6deg) skew(1deg, 0.5deg);
-            }
-
-            .image-medallion {
-                width: 110px;
-                height: 75px;
-                top: -10px;
-                left: -18px;
-                opacity: 0.25;
-                transform: rotate(12deg) scale(0.85);
-            }
-
-            .content-texture {
-                width: 150px;
-                height: 90px;
-                left: 65%;
-                bottom: 15px;
-                opacity: 0.1;
-                transform: rotate(20deg) scale(0.6);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .main-container {
-                margin: 10px;
-                border-radius: 20px;
-                min-height: auto;
-            }
-
-            .header-section {
-                padding: 30px 30px 15px;
-            }
-
-            .main-content {
-                padding: 20px 30px 30px;
-            }
-
-            .maintenance-title {
-                font-size: 2.2rem;
-            }
-
-            .maintenance-subtitle {
-                font-size: 1.3rem;
-            }
-
-            .team-scene {
-                width: 280px;
-                height: 280px;
-                transform: scale(0.9);
-            }
-
             .building-structure {
                 width: 180px;
                 height: 140px;
             }
 
-            .illustration-container {
-                min-height: 320px;
-                padding: 40px 25px;
-            }
-
-            .floating-decoration {
-                width: 75px;
-                height: 50px;
-                top: 15px;
-                right: 20px;
-                opacity: 0.55;
-                transform: rotate(-5deg) skew(0.5deg, 0deg);
-            }
-
-            .image-medallion {
-                width: 85px;
-                height: 60px;
-                top: -8px;
-                left: -12px;
-                opacity: 0.2;
-                transform: rotate(10deg) scale(0.8);
-            }
-
-            .content-texture {
-                width: 120px;
-                height: 70px;
-                left: 60%;
-                bottom: 10px;
-                opacity: 0.08;
-                transform: rotate(18deg) scale(0.55);
-            }
+            .bg-shape:nth-child(1) { width: 200px; height: 200px; }
+            .bg-shape:nth-child(2) { width: 150px; height: 150px; }
+            .bg-shape:nth-child(3) { width: 100px; height: 100px; }
+            .bg-shape:nth-child(4) { width: 70px; height: 70px; }
         }
 
+        /* Móviles Portrait (320px - 480px) */
         @media (max-width: 480px) {
             body {
                 padding: 10px;
             }
 
-            .maintenance-title {
-                font-size: 1.8rem;
+            .main-container {
+                border-radius: 12px;
+                min-height: auto;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                min-height: auto;
             }
 
             .header-section {
-                padding: 20px 20px 10px;
+                grid-column: 1 / -1;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                padding: 20px 25px 15px;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .brand-logo {
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+            }
+
+            .brand-text {
+                font-size: 1.2rem;
+                letter-spacing: 0.5px;
             }
 
             .main-content {
-                padding: 15px 20px 20px;
+                grid-column: 1 / -1;
+                grid-row: 2 / 3;
+                padding: 25px 25px 30px;
+                text-align: center;
+            }
+
+            .maintenance-title {
+                font-size: 2rem;
+                line-height: 1.1;
+                margin-bottom: 18px;
+                letter-spacing: -0.5px;
+            }
+
+            .maintenance-subtitle {
+                font-size: 1.15rem;
+                margin-bottom: 25px;
+                line-height: 1.3;
+            }
+
+            .description {
+                font-size: 1rem;
+                line-height: 1.5;
+                margin-bottom: 28px;
+            }
+
+            .progress-section {
+                margin-bottom: 25px;
+            }
+
+            .progress-label {
+                font-size: 0.85rem;
+                margin-bottom: 8px;
+            }
+
+            .progress-bar {
+                height: 6px;
+                margin-bottom: 6px;
+            }
+
+            .eta-text {
+                font-size: 0.85rem;
+            }
+
+            .illustration-container {
+                grid-column: 1 / -1;
+                grid-row: 3 / 4;
+                border-radius: 0 0 12px 12px;
+                min-height: 350px;
+                padding: 30px 20px;
             }
 
             .team-scene {
-                width: 240px;
-                height: 240px;
-                transform: scale(0.8);
+                width: 320px;
+                height: 320px;
+                transform: scale(1);
             }
 
-            .floating-decoration {
-                width: 60px;
-                height: 40px;
-                top: 10px;
-                right: 15px;
+            .building-structure {
+                width: 170px;
+                height: 140px;
+            }
+
+            .structure-base {
+                width: 150px;
+                height: 18px;
+            }
+
+            .structure-pillar {
+                width: 14px;
+                height: 100px;
+            }
+
+            .structure-top {
+                width: 130px;
+                height: 22px;
+            }
+
+            .worker-1, .worker-2, .worker-3 {
+                width: 42px;
+                height: 75px;
+            }
+
+            .worker {
+                bottom: 75px;
+            }
+
+            .platform {
+                width: 300px;
+                height: 30px;
+                bottom: 40px;
+                left: 15px;
+            }
+
+            .background-image {
                 opacity: 0.5;
-                transform: rotate(-4deg) skew(0.3deg, 0deg);
+                top: 15px;
+                left: 10px;
+                width: calc(100% - 20px);
+                height: calc(100% - 30px);
             }
 
-            .image-medallion {
-                width: 70px;
-                height: 45px;
-                top: -5px;
-                left: -8px;
-                opacity: 0.18;
-                transform: rotate(8deg) scale(0.75);
-            }
+            .bg-shape:nth-child(1) { width: 150px; height: 150px; }
+            .bg-shape:nth-child(2) { width: 120px; height: 120px; }
+            .bg-shape:nth-child(3) { width: 80px; height: 80px; }
+            .bg-shape:nth-child(4) { width: 60px; height: 60px; }
 
             .content-texture {
-                width: 80px;
-                height: 50px;
-                left: 55%;
-                bottom: 5px;
-                opacity: 0.06;
-                transform: rotate(15deg) scale(0.5);
+                display: none;
+            }
+        }
+
+        /* Móviles muy pequeños (hasta 320px) */
+        @media (max-width: 320px) {
+            body {
+                padding: 8px;
+            }
+
+            .main-container {
+                border-radius: 10px;
+                min-height: auto;
+            }
+
+            .header-section {
+                padding: 18px 20px 12px;
+            }
+
+            .brand-logo {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+
+            .brand-text {
+                font-size: 1.1rem;
+            }
+
+            .main-content {
+                padding: 20px 20px 25px;
+            }
+
+            .maintenance-title {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .maintenance-subtitle {
+                font-size: 1.05rem;
+                margin-bottom: 20px;
+            }
+
+            .description {
+                font-size: 0.95rem;
+                margin-bottom: 25px;
+            }
+
+            .illustration-container {
+                min-height: 300px;
+                padding: 25px 15px;
+            }
+
+            .team-scene {
+                width: 270px;
+                height: 270px;
+                transform: scale(1);
+            }
+
+            .building-structure {
+                width: 140px;
+                height: 110px;
+            }
+
+            .structure-base {
+                width: 120px;
+                height: 15px;
+            }
+
+            .structure-pillar {
+                width: 10px;
+                height: 80px;
+            }
+
+            .structure-top {
+                width: 100px;
+                height: 18px;
+            }
+
+            .worker-1, .worker-2, .worker-3 {
+                width: 35px;
+                height: 65px;
+            }
+
+            .worker {
+                bottom: 60px;
+            }
+
+            .platform {
+                width: 250px;
+                height: 25px;
+                bottom: 30px;
+                left: 12px;
+            }
+        }
+
+        /* Orientación landscape para móviles */
+        @media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
+            body {
+                padding: 5px;
+            }
+
+            .main-container {
+                min-height: 95vh;
+                max-height: 95vh;
+                margin: 0;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto 1fr;
+                min-height: 95vh;
+            }
+
+            .header-section {
+                grid-column: 1 / -1;
+                grid-row: 1 / 2;
+                padding: 10px 25px 8px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .brand-logo {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+
+            .brand-text {
+                font-size: 1.1rem;
+            }
+
+            .main-content {
+                grid-column: 1 / 2;
+                grid-row: 2 / 3;
+                padding: 20px 25px;
+                text-align: left;
+            }
+
+            .illustration-container {
+                grid-column: 2 / 3;
+                grid-row: 2 / 3;
+                border-radius: 0 0 12px 0;
+                min-height: auto;
+                padding: 15px 20px;
+            }
+
+            .maintenance-title {
+                font-size: 1.6rem;
+                margin-bottom: 10px;
+            }
+
+            .maintenance-subtitle {
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+
+            .description {
+                font-size: 0.85rem;
+                margin-bottom: 15px;
+            }
+
+            .progress-section {
+                margin-bottom: 15px;
+            }
+
+            .team-scene {
+                width: 200px;
+                height: 200px;
+                transform: scale(1);
+            }
+
+            .building-structure {
+                width: 120px;
+                height: 100px;
+            }
+
+            .worker-1, .worker-2, .worker-3 {
+                width: 30px;
+                height: 55px;
+            }
+
+            .worker {
+                bottom: 45px;
+            }
+
+            .platform {
+                width: 180px;
+                height: 20px;
+                bottom: 25px;
+                left: 10px;
+            }
+        }
+
+        /* Mejoras adicionales para interactividad táctil */
+        @media (hover: none) and (pointer: coarse) {
+            .main-container {
+                backdrop-filter: blur(15px);
+            }
+
+            .brand-logo {
+                transition: transform 0.2s ease;
+            }
+
+            .brand-logo:active {
+                transform: scale(0.95);
+            }
+
+            .progress-bar {
+                border-radius: 12px;
+            }
+
+            .progress-fill {
+                border-radius: 12px;
             }
         }
     </style>
@@ -846,7 +1360,6 @@
         <div class="content-wrapper">
             <!-- Header -->
             <div class="header-section">
-                
             </div>
 
             <!-- Contenido principal -->
@@ -882,13 +1395,6 @@
                         <div class="blueprint-line"></div>
                         <div class="blueprint-line"></div>
                     </div>
-
-
-                    <!-- Herramientas profesionales con SVG - Ocultos -->
-                    <div class="floating-tools" style="display: none;">
-                        <!-- Elementos SVG ocultos -->
-                    </div>
-
                 </div>
             </div>
         </div>
