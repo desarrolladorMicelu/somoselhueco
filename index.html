@@ -105,10 +105,55 @@
             }
         }
 
+        /* Para tablets/iPads - usar imagen móvil pero con ajustes específicos */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .desktop-image {
+                display: none;
+            }
+            
+            .mobile-image {
+                display: block;
+                object-fit: contain;
+                background: #000;
+            }
+
+            /* En tablets, borde intermedio */
+            .container::before {
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+                border-radius: 12px;
+            }
+
+            /* Ajuste específico para orientación landscape en tablets */
+            @media (orientation: landscape) {
+                .mobile-image {
+                    object-fit: cover;
+                }
+                
+                .container::before {
+                    top: 10px;
+                    left: 10px;
+                    right: 10px;
+                    bottom: 10px;
+                }
+            }
+        }
+
         /* Efecto de carga suave */
         .desktop-image, .mobile-image {
             opacity: 0;
             animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        /* Optimización específica para iPads */
+        @media (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+            .mobile-image {
+                object-fit: contain;
+                object-position: center;
+                background: #000;
+            }
         }
 
         @keyframes fadeIn {
